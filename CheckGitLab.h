@@ -2,12 +2,12 @@
 
 #include "NoticeBase.h"
 
-// Handles all the functionality for the initial check mail/calendar popup
-class CheckEmail : public NoticeBase {
+// Handles all the functionality for the initial check gitlab popup
+class CheckGitLab : public NoticeBase {
     Q_OBJECT
 
   public:
-    explicit CheckEmail(QObject *parent = nullptr);
+    explicit CheckGitLab(QObject *parent = nullptr);
 
     // Functions to retrieve the different state configurations
 

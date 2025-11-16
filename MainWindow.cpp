@@ -5,8 +5,8 @@
 #include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QWidget(parent), TIMER_ZERO_TEXT("Time to check your Mail Inbox and Calendar!"),
-      TIMER_UPDATE_TEXT("Keep checking your Mail Inbox and Calendar for another %1"),
+    : QWidget(parent), TIMER_ZERO_TEXT("Time to check your Mail Inbox!"),
+      TIMER_UPDATE_TEXT("Keep checking your Mail Inbox for another %1"),
       INITIAL_TEXT(TIMER_ZERO_TEXT), TITLE("Work Notice") {
     createWindow();
     addLabel();
@@ -50,13 +50,21 @@ void MainWindow::updateWorkState(NoticeState state) {
         TIMER_ZERO_TEXT = "Time to raise your desk and stand up!";
         TIMER_UPDATE_TEXT = "Keep standing for another %1";
         break;
-    case NoticeState::CheckEmail:
-        TIMER_ZERO_TEXT = "Time to check your Mail Inbox and Calendar!";
-        TIMER_UPDATE_TEXT = "Keep checking your Mail Inbox and Calendar for another %1";
+    case NoticeState::CheckMailInbox:
+        TIMER_ZERO_TEXT = "Time to check your Mail Inbox!";
+        TIMER_UPDATE_TEXT = "Keep checking your Mail Inbox for another %1";
         break;
     case NoticeState::CheckJira:
         TIMER_ZERO_TEXT = "Time to check your Jira!";
         TIMER_UPDATE_TEXT = "Keep checking your Jira for another %1";
+        break;
+    case NoticeState::CheckGitLab:
+        TIMER_ZERO_TEXT = "Time to check your GitLab!";
+        TIMER_UPDATE_TEXT = "Keep checking your GitLab for another %1";
+        break;
+    case NoticeState::CheckCalendar:
+        TIMER_ZERO_TEXT = "Time to check your Calendar!";
+        TIMER_UPDATE_TEXT = "Keep checking your Calendar for another %1";
         break;
     }
 }

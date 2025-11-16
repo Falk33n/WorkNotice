@@ -15,7 +15,7 @@ class WorkDurations {
     // 40 minutes recommended by health experts
     static constexpr int SIT_DOWN_DURATION = ONE_MINUTE_IN_MS * 40;
 
-    // 5 minutes for start-of-day tasks such as checking email and
-    // calendar and reviewing merge requests and checking Jira
-    static constexpr int START_OF_DAY_TASKS_DURATION = ONE_MINUTE_IN_MS * 5;
+    // 3 minutes for start-of-day tasks such as checking mail inbox and
+    // calendar and gitlab and jira
+    static constexpr int START_OF_DAY_TASKS_DURATION = ONE_MINUTE_IN_MS * 3;
 };

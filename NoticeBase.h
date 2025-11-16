@@ -50,10 +50,18 @@ class NoticeBase : public QObject {
     //   @param state The new notice state
     void stateChanged(NoticeState state);
 
+private:
+    // Gets an readable remaining time text for the popup
+    QString getDurationText() const;
+
+    // Combines the popup text with the duration text
+    QString combinePopupText() const;
+
   protected:
     // Shows the popup
     void showPopup() const;
 
     int remainingSeconds;
+    int calculatedDurationMs;
     QTimer *tickTimer;
 };

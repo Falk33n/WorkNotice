@@ -1,7 +1,9 @@
 #pragma once
 
-#include "CheckEmail.h"
+#include "CheckMailInbox.h"
 #include "CheckJira.h"
+#include "CheckCalendar.h"
+#include "CheckGitLab.h"
 #include "MainWindow.h"
 #include "SitDown.h"
 #include "StandUp.h"
@@ -18,7 +20,9 @@ class WorkNotice : public QWidget {
     // Pointers to the different notice states
     StandUp *standUp;
     SitDown *sitDown;
-    CheckEmail *checkEmail;
+    CheckMailInbox *checkMailInbox;
     CheckJira *checkJira;
+    CheckGitLab *checkGitLab;
+    CheckCalendar *checkCalendar;
     MainWindow *mainWindow;
 };
