@@ -113,7 +113,10 @@
     <QtRcc Include="WorkNotice.qrc" />
     <QtUic Include="WorkNotice.ui" />
     <QtMoc Include="WorkNotice.h" />
+    <ClCompile Include="CheckEmail.cpp" />
+    <ClCompile Include="CheckJira.cpp" />
     <ClCompile Include="MainWindow.cpp" />
+    <ClCompile Include="NoticeBase.cpp" />
     <ClCompile Include="SitDown.cpp" />
     <ClCompile Include="StandUp.cpp" />
     <ClCompile Include="StyledMessageBox.cpp" />
@@ -130,9 +133,13 @@
     <QtMoc Include="StandUp.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="WorkDurations.h" />
     <QtMoc Include="SitDown.h" />
     <QtMoc Include="StyledMessageBox.h" />
     <QtMoc Include="MainWindow.h" />
+    <QtMoc Include="CheckEmail.h" />
+    <QtMoc Include="NoticeBase.h" />
+    <QtMoc Include="CheckJira.h" />
     <ClInclude Include="NoticeState.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>

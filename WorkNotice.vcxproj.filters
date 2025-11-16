@@ -61,6 +61,15 @@
     <ClCompile Include="MainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CheckEmail.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NoticeBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckJira.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="StandUp.h">
@@ -75,12 +84,24 @@
     <QtMoc Include="MainWindow.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="CheckEmail.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="NoticeBase.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="CheckJira.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NoticeState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkDurations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

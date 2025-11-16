@@ -1,31 +1,31 @@
-// Local includes
 #include "WorkNotice.h"
-
-// 3rd party includes
-#include <QLabel>
-#include <QVBoxLayout>
 
 WorkNotice::WorkNotice(MainWindow *_mainWindow, QWidget *parent)
     : QWidget(parent), mainWindow(_mainWindow) {
+    // Create the different notice states
+    checkEmail = new CheckEmail(this);
+    checkJira = new CheckJira(this);
     sitDown = new SitDown(this);
-    standUp = new StandUp(sitDown, this);
+    standUp = new StandUp(this);
 
-    // Use same instances for communication between timers
-    sitDown->setStandUp(standUp);
+    // Connect the timers and state changes to the main window
+    std::vector<NoticeBase *> notices = {checkEmail, checkJira, sitDown, standUp};
+    for (auto notice : notices) {
+        connect(notice, &NoticeBase::remainingTimeChanged, mainWindow,
+                &MainWindow::updateRemainingTime);
+        connect(notice, &NoticeBase::stateChanged, mainWindow, &MainWindow::updateWorkState);
+    }
 
-    // Connect the stand-up timer
-    connect(standUp, &StandUp::remainingTimeChanged, mainWindow, &MainWindow::updateRemainingTime);
+    // Chain so that the timers start one after another
+    connect(checkEmail, &NoticeBase::timeout, checkJira, &NoticeBase::startTimer);
+    connect(checkJira, &NoticeBase::timeout, standUp, &NoticeBase::startTimer);
 
-    // Connect the sit-down timer
-    connect(sitDown, &SitDown::remainingTimeChanged, mainWindow, &MainWindow::updateRemainingTime);
+    // Chains the loop between standing up and sitting down
+    connect(standUp, &NoticeBase::timeout, sitDown, &NoticeBase::startTimer);
+    connect(sitDown, &NoticeBase::timeout, standUp, &NoticeBase::startTimer);
 
-    /* Connect state change signals to MainWindow to update text */
-
-    connect(standUp, &StandUp::stateChanged, mainWindow, &MainWindow::updateWorkState);
-
-    connect(sitDown, &SitDown::stateChanged, mainWindow, &MainWindow::updateWorkState);
-
-    standUp->startTimer();
+    // Ensures the main window is created before starting the first timer
+    QTimer::singleShot(0, this, [this]() { checkEmail->startTimer(); });
 }
 
 WorkNotice::~WorkNotice() {}

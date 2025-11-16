@@ -1,13 +1,13 @@
-// Local includes
 #include "MainWindow.h"
-#include "StandUp.h"
 #include "Utils.h"
-
-// 3rd party includes
-#include <QLabel>
+#include "WorkDurations.h"
 #include <QVBoxLayout>
+#include <QTimer>
 
-MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
+MainWindow::MainWindow(QWidget *parent)
+    : QWidget(parent), TIMER_ZERO_TEXT("Time to check your Mail Inbox and Calendar!"),
+      TIMER_UPDATE_TEXT("Keep checking your Mail Inbox and Calendar for another %1"),
+      INITIAL_TEXT(TIMER_ZERO_TEXT), TITLE("Work Notice") {
     createWindow();
     addLabel();
 }
@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
 MainWindow::~MainWindow() {}
 
 void MainWindow::createWindow() {
-    setFixedSize(450, 50);
+    setFixedSize(550, 50);
     setWindowFlags(Qt::Window | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
     setWindowTitle(TITLE);
 }
@@ -30,11 +30,13 @@ void MainWindow::addLabel() {
 
 void MainWindow::updateRemainingTime(int seconds) {
     if (seconds == 0) {
-        label->setText(TIMER_ZERO_TEXT);
+        // Sometimes the TIMER_ZERO_TEXT does not update in time
+        // Therefore we wait until the event loop is free to update the label
+        QTimer::singleShot(0, this, [this]() { label->setText(TIMER_ZERO_TEXT); });
         return;
     }
 
-    const int SECONDS_IN_MILLISECONDS = seconds * 1000;
+    const int SECONDS_IN_MILLISECONDS = seconds * WorkDurations::ONE_SECOND_IN_MS;
     label->setText(TIMER_UPDATE_TEXT.arg(Utils::millisecondsToTimeString(SECONDS_IN_MILLISECONDS)));
 }
 
@@ -42,11 +44,19 @@ void MainWindow::updateWorkState(NoticeState state) {
     switch (state) {
     case NoticeState::SitDown:
         TIMER_ZERO_TEXT = "Time to lower your desk and sit down!";
-        TIMER_UPDATE_TEXT = "Next sit down reminder in %1";
+        TIMER_UPDATE_TEXT = "Keep sitting for another %1";
         break;
     case NoticeState::StandUp:
         TIMER_ZERO_TEXT = "Time to raise your desk and stand up!";
-        TIMER_UPDATE_TEXT = "Next stand up reminder in %1";
+        TIMER_UPDATE_TEXT = "Keep standing for another %1";
+        break;
+    case NoticeState::CheckEmail:
+        TIMER_ZERO_TEXT = "Time to check your Mail Inbox and Calendar!";
+        TIMER_UPDATE_TEXT = "Keep checking your Mail Inbox and Calendar for another %1";
+        break;
+    case NoticeState::CheckJira:
+        TIMER_ZERO_TEXT = "Time to check your Jira!";
+        TIMER_UPDATE_TEXT = "Keep checking your Jira for another %1";
         break;
     }
 }

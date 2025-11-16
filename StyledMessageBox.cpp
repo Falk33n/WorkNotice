@@ -1,13 +1,11 @@
-// Local includes
 #include "StyledMessageBox.h"
-
-// 3rd party includes
-#include <QPushButton>
 #include <Windows.h>
+#include <QPushButton>
 
 StyledMessageBox::StyledMessageBox(const QString &title, const QString &text,
                                    const QString &buttonText, QWidget *parent)
     : QMessageBox(parent) {
+    // Directly create and show the message box
     createWindow();
     addTextContent(title, text);
     addCustomButton(buttonText);
@@ -16,6 +14,7 @@ StyledMessageBox::StyledMessageBox(const QString &title, const QString &text,
 
 void StyledMessageBox::createWindow() {
     playAlertSound();
+    // Removes close button from the title bar
     setWindowFlags(Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
     addCss();
     makeWindowStayOnTop();

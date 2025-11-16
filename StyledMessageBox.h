@@ -1,8 +1,6 @@
 #pragma once
 
-// 3rd party includes
-#include <QMessageBox>
-#include <QString>
+#include "QMessageBox"
 
 // Custom styled message box class
 class StyledMessageBox : public QMessageBox {
@@ -34,6 +32,6 @@ class StyledMessageBox : public QMessageBox {
     // 	    @param text The main text content of the message box
     void addTextContent(const QString &title, const QString &text);
 
-    // Applies custom CSS styles to the button
+    // Applies custom CSS styles
     void addCss();
 };

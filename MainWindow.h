@@ -1,11 +1,7 @@
 #pragma once
 
-// Local includes
 #include "NoticeState.h"
-
-// 3rd party includes
-#include "ui_WorkNotice.h"
-#include <QLabel>
+#include "QLabel"
 
 // Handles the creation of the main window
 class MainWindow : public QWidget {
@@ -23,11 +19,10 @@ class MainWindow : public QWidget {
     void updateWorkState(NoticeState state);
 
   private:
-    const QString INITIAL_TEXT = "Getting remaining time until stand up reminder...";
-    const QString TITLE = "Work Notice";
-
-    QString TIMER_ZERO_TEXT = "Time to raise your desk and stand up!";
-    QString TIMER_UPDATE_TEXT = "Next stand up reminder in %1";
+    QString TIMER_ZERO_TEXT;
+    QString TIMER_UPDATE_TEXT;
+    QString INITIAL_TEXT;
+    QString TITLE;
 
     QLabel *label;
 

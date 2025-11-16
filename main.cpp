@@ -1,8 +1,5 @@
-// Local includes
 #include "WorkNotice.h"
-
-// 3rd party includes
-#include <QApplication>
+#include "QApplication"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);

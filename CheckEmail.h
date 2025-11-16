@@ -2,12 +2,12 @@
 
 #include "NoticeBase.h"
 
-// Handles all the functionality for the sit-down popup
-class SitDown : public NoticeBase {
+// Handles all the functionality for the initial check mail/calendar popup
+class CheckEmail : public NoticeBase {
     Q_OBJECT
 
   public:
-    explicit SitDown(QObject *parent = nullptr);
+    explicit CheckEmail(QObject *parent = nullptr);
 
     // Functions to retrieve the different state configurations
 

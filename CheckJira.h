@@ -2,12 +2,12 @@
 
 #include "NoticeBase.h"
 
-// Handles all the functionality for the sit-down popup
-class SitDown : public NoticeBase {
+// Handles all the functionality for the check jira popup
+class CheckJira : public NoticeBase {
     Q_OBJECT
 
   public:
-    explicit SitDown(QObject *parent = nullptr);
+    explicit CheckJira(QObject *parent = nullptr);
 
     // Functions to retrieve the different state configurations
 
